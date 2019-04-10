@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { withAuthenticator } from 'aws-amplify-react'; // or 'aws-amplify-react-native';
+import Amplify from 'aws-amplify';
+import config from './config/amplify';
 import './App.css';
+import Toolbar from './components/Toolbar';
+import TodoApp from './components/TodoApp';
+
+
+Amplify.configure(config);
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <div
-            className="App-link"
-          >
-            Hello Athena
-          </div>
-        </header>
-        <div>
-        </div>
+      <div className="App" style={{height: '100vh'}}>
+        <Toolbar />
+        <TodoApp />
       </div>
     );
   }
 }
 
-export default App;
+export default withAuthenticator(App);
